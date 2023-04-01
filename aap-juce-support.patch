@@ -1,0 +1,80 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 5f0ceda..ad15622 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -19,7 +19,7 @@ if(UNIX AND NOT APPLE)
+ endif(UNIX AND NOT APPLE)
+ 
+ # Set what formats we want to target
+-list(APPEND BUILD_TYPES VST3)
++list(APPEND BUILD_TYPES VST3 Standalone)
+ if (APPLE)
+     list(APPEND BUILD_TYPES AU)
+ endif(APPLE)
+@@ -109,4 +109,46 @@ BUILD_WITH_INSTALL_RPATH 1
+ INSTALL_NAME_DIR "@rpath"
+ CXX_STANDARD 11
+ CXX_STANDARD_REQUIRED ON
+-)
+\ No newline at end of file
++)
++
++# begin AAP specifics -->  
++  
++# They are needed in desktop too, for generate-aap-metadata.  
++include_directories(  
++  "${AAP_DIR}/include"  
++)  
++  
++add_definitions([[-DJUCE_PUSH_NOTIFICATIONS_ACTIVITY="com/rmsl/juce/JuceActivity"]])  
++target_compile_definitions(${APP_NAME} PUBLIC  
++  JUCEAAP_HAVE_AUDIO_PLAYHEAD_NEW_POSITION_INFO=1  
++ JUCE_PUSH_NOTIFICATIONS=1  )  
++  
++message("AAP_DIR: ${AAP_DIR}")  
++message("AAP_JUCE_DIR: ${AAP_JUCE_DIR}")  
++juce_add_modules(${AAP_JUCE_DIR}/aap-modules/juceaap_audio_plugin_client)  
++  
++if (ANDROID)  
++  
++  # dependencies  
++  find_library(log "log")  
++  find_library(android "android")  
++  find_library(glesv2 "GLESv2")  
++  find_library(egl "EGL")  
++  set(cpufeatures_lib "cpufeatures")  
++  set(oboe_lib "oboe")  
++  
++  target_include_directories(${APP_NAME} PRIVATE  
++  "${ANDROID_NDK}/sources/android/cpufeatures"  
++            "${OBOE_DIR}/include"  
++            )  
++  
++  add_compile_definitions([[JUCE_DONT_AUTO_OPEN_MIDI_DEVICES_ON_MOBILE=1]])  
++endif (ANDROID)  
++  
++target_link_libraries(${APP_NAME}  
++  PRIVATE  
++  juceaap_audio_plugin_client  
++  )  
++# <-- end Android specifics  
++# <-- end AAP specifics
++
+diff --git a/Source/PluginEditor.cpp b/Source/PluginEditor.cpp
+index 757c547..f1c26a0 100644
+--- a/Source/PluginEditor.cpp
++++ b/Source/PluginEditor.cpp
+@@ -287,6 +287,7 @@ void XenosAudioProcessorEditor::buttonClicked(juce::Button* button)
+ 
+ void XenosAudioProcessorEditor::loadCustomScale()
+ {
++    /*
+     juce::FileChooser chooser("Select a Scala tuning file (.scl) to load.",
+                               juce::File{}, "*.scl");
+     if (chooser.browseForFileToOpen()) {
+@@ -306,4 +307,5 @@ void XenosAudioProcessorEditor::loadCustomScale()
+             audioProcessor.updateHostDisplay();
+         }
+     }
++    */
+ }

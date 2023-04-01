@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugins xmlns="urn:org.androidaudioplugin.core">
+  <plugin name="Xenos" category="Instrument" author="Raphael Radna" developer="Raphael Radna"
+          unique-id="juceaap:584e4f53" library="libXenos_Standalone.so"
+          entrypoint="GetJuceAAPFactoryStandalone">
+    <extensions>
+      <extension uri="urn://androidaudioplugin.org/extensions/presets/v1"/>
+      <extension uri="urn://androidaudioplugin.org/extensions/state/v1"/>
+      <extension uri="urn://androidaudioplugin.org/extensions/midi2/v1"/>
+    </extensions>
+    <parameters xmlns="urn://androidaudioplugin.org/extensions/parameters">
+      <parameter id="0" name="segments" direction="input" minimum="2.0" maximum="128.0"
+                 default="0.0" content="other"/>
+      <parameter id="1" name="pitchWidth" direction="input" minimum="0.0" maximum="96.0"
+                 default="0.0001085069452528842" content="other"/>
+      <parameter id="2" name="pitchBarrier" direction="input" minimum="0.0" maximum="1.0"
+                 default="0.5623413324356079" content="other"/>
+      <parameter id="3" name="pitchStep" direction="input" minimum="0.0" maximum="1.0"
+                 default="0.3162277638912201" content="other"/>
+      <parameter id="4" name="ampGain" direction="input" minimum="-96.0" maximum="0.0"
+                 default="1.0" content="other"/>
+      <parameter id="5" name="ampBarrier" direction="input" minimum="0.0" maximum="1.0"
+                 default="0.5623413324356079" content="other"/>
+      <parameter id="6" name="ampStep" direction="input" minimum="0.0" maximum="1.0"
+                 default="0.3162277638912201" content="other"/>
+      <parameter id="7" name="pitchDistribution" direction="input" minimum="0.0"
+                 maximum="9.0" default="0.0" content="other"/>
+      <parameter id="8" name="pitchWalk" direction="input" minimum="0.0" maximum="1.0"
+                 default="1.0" content="other"/>
+      <parameter id="9" name="pitchAlpha" direction="input" minimum="-100.0" maximum="100.0"
+                 default="0.6091085076332092" content="other"/>
+      <parameter id="10" name="pitchBeta" direction="input" minimum="-100.0" maximum="100.0"
+                 default="0.6091085076332092" content="other"/>
+      <parameter id="11" name="ampDistribution" direction="input" minimum="0.0"
+                 maximum="9.0" default="0.0" content="other"/>
+      <parameter id="12" name="ampWalk" direction="input" minimum="0.0" maximum="1.0"
+                 default="1.0" content="other"/>
+      <parameter id="13" name="ampAlpha" direction="input" minimum="-100.0" maximum="100.0"
+                 default="0.6091085076332092" content="other"/>
+      <parameter id="14" name="ampBeta" direction="input" minimum="-100.0" maximum="100.0"
+                 default="0.6091085076332092" content="other"/>
+      <parameter id="15" name="attack" direction="input" minimum="0.001000000047497451"
+                 maximum="100.0" default="0.1344517916440964" content="other"/>
+      <parameter id="16" name="decay" direction="input" minimum="0.001000000047497451"
+                 maximum="100.0" default="0.1344517916440964" content="other"/>
+      <parameter id="17" name="sustain" direction="input" minimum="-96.0" maximum="0.0"
+                 default="1.0" content="other"/>
+      <parameter id="18" name="release" direction="input" minimum="0.001000000047497451"
+                 maximum="100.0" default="0.1344517916440964" content="other"/>
+      <parameter id="19" name="scale" direction="input" minimum="0.0" maximum="15.0"
+                 default="0.0" content="other"/>
+      <parameter id="20" name="root" direction="input" minimum="0.0" maximum="12.0"
+                 default="0.0" content="other"/>
+    </parameters>
+    <ports>
+      <port direction="output" content="audio" name="Left"/>
+      <port direction="output" content="audio" name="Right"/>
+      <port direction="input" content="midi2" name="MIDI input"/>
+    </ports>
+  </plugin>
+</plugins>
