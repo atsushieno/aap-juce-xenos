@@ -5,9 +5,11 @@
           unique-id="juceaap:584e4f53" library="libXenos_Standalone.so"
           entrypoint="GetJuceAAPFactoryStandalone">
     <extensions>
-      <extension uri="urn://androidaudioplugin.org/extensions/presets/v1"/>
-      <extension uri="urn://androidaudioplugin.org/extensions/state/v1"/>
-      <extension uri="urn://androidaudioplugin.org/extensions/midi2/v1"/>
+      <extension uri="urn://androidaudioplugin.org/extensions/plugin-info/v2"/>
+      <extension uri="urn://androidaudioplugin.org/extensions/presets/v2"/>
+      <extension uri="urn://androidaudioplugin.org/extensions/state/v2"/>
+      <extension uri="urn://androidaudioplugin.org/extensions/midi2/v2"/>
+      <extension uri="urn://androidaudioplugin.org/extensions/gui/v2"/>
     </extensions>
     <parameters xmlns="urn://androidaudioplugin.org/extensions/parameters">
       <parameter id="0" name="segments" direction="input" minimum="2.0" maximum="128.0"
