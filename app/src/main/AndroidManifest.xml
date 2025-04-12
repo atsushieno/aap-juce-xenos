@@ -30,7 +30,6 @@
     </service>
     <service android:name="org.androidaudioplugin.midideviceservice.StandaloneAudioPluginMidiDeviceService"
         android:permission="android.permission.BIND_MIDI_DEVICE_SERVICE"
-        tools:targetApi="35"
         android:exported="true">
       <intent-filter>
         <action android:name="android.media.midi.MidiDeviceService" />
@@ -38,7 +37,17 @@
       <meta-data android:name="android.media.midi.MidiDeviceService"
           android:resource="@xml/midi_device_info" />
     </service>
-
+    <service android:name="org.androidaudioplugin.midideviceservice.StandaloneAudioPluginMidiUmpDeviceService"
+        android:permission="android.permission.BIND_MIDI_DEVICE_SERVICE"
+        tools:targetApi="35"
+        android:exported="true">
+      <intent-filter>
+        <action android:name="android.media.midi.MidiUmpDeviceService" />
+      </intent-filter>
+      <property android:name="android.media.midi.MidiUmpDeviceService"
+          android:resource="@xml/ump_device_info" />
+    </service>
+    
     <provider android:name="androidx.startup.InitializationProvider"
         android:authorities="${applicationId}.androidx-startup"
         android:exported="false"

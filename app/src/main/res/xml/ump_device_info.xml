@@ -1,6 +1,6 @@
 <devices>
     <device name="Xenos" manufacturer="androidaudioplugin.org" product="Xenos">
-        <input-port name="input" />
+        <port name="port1" />
     </device>
 </devices>
 
