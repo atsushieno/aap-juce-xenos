@@ -47,7 +47,7 @@
       <property android:name="android.media.midi.MidiUmpDeviceService"
           android:resource="@xml/ump_device_info" />
     </service>
-    
+
     <provider android:name="androidx.startup.InitializationProvider"
         android:authorities="${applicationId}.androidx-startup"
         android:exported="false"
